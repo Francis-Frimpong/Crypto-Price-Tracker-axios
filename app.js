@@ -5,7 +5,7 @@ class Price {
     this.apiResource = apiResource;
   }
 
-  async getResource() {
+  async #getResource() {
     try {
       const response = await axios.get(this.apiResource, {
         params: { ids: this.coinId, vs_currencies: this.currency },
@@ -18,7 +18,7 @@ class Price {
   }
 
   displayResult() {
-    this.getResource()
+    this.#getResource()
       .then((data) => {
         console.log(data);
       })
