@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crypto Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="header">
+          <h1 class="title">₿ Crypto Price Tracker</h1>
+          <div class="sub">CoinGecko + Axios</div>
+        </div>
+
+        <form id="cryptoForm" class="row cols-3">
+          <input id="coinIds" placeholder="ids (e.g. bitcoin,ethereum)" />
+          <select id="fiat">
+            <option>usd</option>
+            <option>eur</option>
+            <option>ghs</option>
+          </select>
+          <div class="flex">
+            <button class="btn" id="btnCrypto">Fetch</button>
+            <button class="btn-ghost" id="btnAuto">Auto Refresh</button>
+          </div>
+        </form>
+
+        <div class="card" style="margin-top: 1rem">
+          <table>
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Price</th>
+                <th>24h %</th>
+              </tr>
+            </thead>
+            <tbody id="cryptoTable"></tbody>
+          </table>
+        </div>
+
+        <div id="cryptoError" class="footer-note"></div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
