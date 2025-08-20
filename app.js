@@ -19,8 +19,38 @@ class Price {
 
   displayResult() {
     this.#getResource()
+
       .then((data) => {
-        console.log(data);
+        document.getElementById("cryptoTable").innerHTML = " ";
+
+        for (const coin in data) {
+          const coinData = data[coin];
+
+          // Get the first currency key dynamically
+          const currencyKey = Object.keys(coinData).find(
+            (key) => !key.includes("_change")
+          );
+          const price = coinData[currencyKey];
+
+          const tr = document.createElement("tr");
+
+          const coinTd = document.createElement("td");
+          coinTd.classList.add("coin");
+          coinTd.textContent = this.coinId;
+
+          const priceTd = document.createElement("td");
+          priceTd.classList.add("price");
+          priceTd.textContent = `${currencyKey.toUpperCase()}  ${price}`;
+
+          const changeTd = document.createElement("td");
+          changeTd.classList.add("change");
+          changeTd.textContent = "-";
+
+          tr.appendChild(coinTd);
+          tr.appendChild(priceTd);
+          tr.appendChild(changeTd);
+          document.getElementById("cryptoTable").appendChild(tr);
+        }
       })
       .catch((err) => {
         console.log("Data can't be found!");
@@ -42,6 +72,8 @@ form.addEventListener("submit", (e) => {
       currency
     );
     checkPrice.displayResult();
+
+    coinIds.value = "";
   }
 });
 
