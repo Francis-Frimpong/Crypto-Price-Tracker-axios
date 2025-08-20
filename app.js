@@ -13,7 +13,7 @@ class Price {
 
       return response.data;
     } catch (error) {
-      console.log("Limit exceeded!");
+      document.getElementById("cryptoError").textContent = "Limit exceeded!";
     }
   }
 
@@ -54,6 +54,8 @@ class Price {
       })
       .catch((err) => {
         console.log("Data can't be found!");
+        document.getElementById("cryptoError").textContent =
+          "Data can't be found!";
       });
   }
 }
@@ -74,12 +76,6 @@ form.addEventListener("submit", (e) => {
     checkPrice.displayResult();
 
     coinIds.value = "";
+    document.getElementById("cryptoError").innerHTML = "";
   }
 });
-
-// axios
-//   .get("https://api.coingecko.com/api/v3/simple/price", {
-//     params: { ids: "bitcoin,ethereum", vs_currencies: "eur" },
-//   })
-//   .then((res) => console.log(res.data))
-//   .catch((err) => console.error(err));
